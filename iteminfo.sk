@@ -1,0 +1,9 @@
+#hercore iteminfo
+command /id [<text>]:
+	trigger:
+		argument is not set:
+			send "&6Twoj item to: &c%player's tool%&6, nazwa to &c%name of player's tool%&6, jego opis: &c%lore of player's tool%&6 i ID: &c%id of player's tool%:%data value of player's tool%"
+		argument is "reka" or "hand":
+			send "&6Twoj item to: &c%player's tool%&6, nazwa to &c%name of player's tool%&6, jego opis: &c%lore of player's tool%&6 i ID: &c%id of player's tool%:%data value of player's tool%"
+		argument is "cel" or "target":
+			send "&6Namierzony blok to: &c%targeted block%&6, ID: &c%id of targeted block%:%data value of targeted block%"
