@@ -1,2 +1,2 @@
-# miniskrypty
+# Mini-Skrypty
 Wszystkie moje małe skrypty!
