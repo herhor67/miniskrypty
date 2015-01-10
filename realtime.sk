@@ -1,0 +1,26 @@
+#hercore realtime
+options:
+	tag: &7[&2Real&1Time&7]
+
+on script load:
+	wait 1 second
+	if file "plugins/Skript/realtime/config.yml" doesn't exists:
+		wf "worlds:" to "plugins/Skript/realtime/config.yml"
+		wf "  - world" to "plugins/Skript/realtime/config.yml"
+		wait 1 second
+	clear {realtime::worlds::*}
+	set {realtime::worlds::*} to value list "worlds" get of "plugins/Skript/realtime/config.yml"
+
+every minute:
+	execute server command "/odswiezczas"
+
+command /odswiezczas:
+	trigger:
+		set {_obecna.godzina} to text from url "http://nicc0.pl/godzina.txt"
+		{_obecna.godzina} is set:
+			{_obecna.godzina} contains "404" or "not" or "found" or "error" or "403" or "forbidden":
+				stop
+			loop {realtime::worlds::*}:
+				execute server command "/time set %{_obecna.godzina}% %loop-value%"
+				chance of 1%:
+					broadcast "{@tag} &6Mamy godzinę %{_obecna.godzina}%"
