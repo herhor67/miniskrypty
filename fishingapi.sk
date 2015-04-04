@@ -1,0 +1,18 @@
+variables:
+	{lowienie::%player%} = false
+
+on rightclick with fishing rod:
+	{lowienie::%player%} is false:
+		set {lowienie::%player%} to true
+	else:
+		set {lowienie::%player%} to false
+
+every second:
+	loop all players:
+		{lowienie::%loop-player%} is true:
+			loop-player's tool isn't fishing rod:
+				set {lowienie::%loop-player%} to false
+
+on quit:
+  {lowienie::%loop-player%} is true:
+		set {lowienie::%loop-player%} to false
